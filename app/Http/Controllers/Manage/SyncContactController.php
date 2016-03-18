@@ -58,7 +58,12 @@ class SyncContactController extends Controller
                 DB::table('qy_users')->delete();
                 DB::table('qy_users')->insert($mdata);
             });
-            return Response::json(['errcode'=>0,'rs'=>[],'total'=>0]);
+            // return Response::json(['errcode'=>0,'rs'=>[],'total'=>0]);
+            return redirect(url('manage/sync/rs'));
         }
+    }
+
+    public function syncRs(){
+        return view('mvote.sync');
     }
 }

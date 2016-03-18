@@ -14,28 +14,16 @@ use DB;
 
 class VoteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(){
-        return 'votes';
+        return redirect(url('manage/vote/list'));
     }
 
     public function create(){
-        /*QyVote::insert([
-                'type' => 1,
-                'title' => '四月评测',
-                'info' => '四月份评测,希望大家认真选择',
-                'starttime' => mktime(0,0,0,3,9,2016),
-                'endtime' => mktime(0,0,0,3,11,2016),
-                'ym' => date('ym'),
-                'status' => 1,
-            ]);
-        return QyVote::all()->last();*/
-        // var_dump($request);return 1;
-        // $title = $request->input('title');
-        // $info = $request->input('info');
-        // $question = $request->input('q');
-        // $percent = $request->input('p');
-        // $type = $request->input('type');
-        // $forMember = $request->input('formember');
 
         return view('mvote.create');
     }
@@ -51,26 +39,16 @@ class VoteController extends Controller
         $endtime = strtotime($request->input('endtime'));
 
         DB::transaction(function() use($title,$info,$questions,$percents,$type,$forMember,$starttime,$endtime){
-            // $qyvote = new QyVote();
-            // $qyvote->type = 1;
-            // $qyvote->title = $title;
-            // $qyvote->info = $info;
-            // $qyvote->starttime = $starttime;
-            // $qyvote->endtime = $endtime;
-            // $qyvote->status = 1;
-            // $qyvote->save();
-            // $vid = $qyvote->id;
-
             $qyvote = QyVote::create([
                     'type' => 1,
                     'title' => $title,
                     'info' => $info,
                     'starttime' => $starttime,
                     'endtime' => $endtime,
-                    'status' => 1
+                    'status' => 1,
                 ]);
             $vid = $qyvote->id;
-            // $qyvotenode = new QyVoteNode();
+
             foreach($questions as $i=>$question){
                 QyVoteNode::create([
                         'title' => $question,
@@ -81,6 +59,7 @@ class VoteController extends Controller
                     ]);
             }
 
+            $extra = '';
             foreach($forMember as $userid=>$member){
                 QyVoteUser::create([
                         'vid' => $vid,
@@ -89,14 +68,43 @@ class VoteController extends Controller
                         'name' => $member->name,
                         'position' => $member->position,
                     ]);
+                $extra .= ','.$userid.$member->department;
             }
+
+            $qyvote->extra = $extra;
+            $qyvote->save();
         });
 
-        return 1;
+        return redirect('manage/vote/list');
 
     }
 
-    public function statistics($id){
+    public function statistics($id,$order){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+        $order = $order?$order:'asc';
+        // $sum = $vote->getRecordsSum()->orderBy('score',$order)->get();
+        $sum = $vote->getRecordsSum()
+            ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
+            ->groupBy('vuid')
+            ->orderBy('ss',$order)
+            ->get();
+        
+        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum]);
+    }
 
+    public function vlist(){
+        $votes = QyVote::where('starttime','<',time())->where('endtime','>',time())->where('status',1)->get();
+        return view('mvote.vlist',['votes'=>$votes]);
+    }
+
+    public function show($id){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+        return view('mvote.show',['vote'=>$vote]);
     }
 }

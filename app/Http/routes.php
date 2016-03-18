@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +23,13 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
-
 Route::group(['middleware'=>'web'],function(){
-    Route::get('vote',['as'=>'vote','uses'=>'QyVoteController@vote']);
+    Route::get('vote/{id}',['as'=>'vote','uses'=>'QyVoteController@vote']);
     Route::get('voteapp',['as'=>'voteapp','uses'=>'QyVoteController@voteApp']);
     Route::post('vote','QyVoteController@postVote');
+    Route::get('vlist','QyVoteController@voteList')->name('vlist');
+    // Route::get('statistics/{id?}','QyVoteController@WechatStatistics');
+    Route::get('statistics/{id?}','QyVoteController@wechatStatistics');
 });
 
 Route::group(['middleware'=>'web'],function(){
@@ -42,11 +38,13 @@ Route::group(['middleware'=>'web'],function(){
 });
 
 Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], function () {
+    Route::auth();
     Route::group(['prefix'=>'department'],function(){
         Route::get('/',['as'=>'index','uses'=>'DepartmentController@index']);
     });
     Route::group(['prefix'=>'sync'],function(){
         Route::get('/',['as'=>'index','uses'=>'SyncContactController@sync']);
+        Route::get('/rs','SyncContactController@syncRs');
     });
 
     Route::group(['prefix'=>'contact'],function(){
@@ -59,6 +57,8 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], f
         Route::get('/','VoteController@index');
         Route::get('create','VoteController@create');
         Route::post('store','VoteController@store');
-        Route::get('statistics','VoteController@statistics');
+        Route::get('statistics/{id}/{order}','VoteController@statistics');
+        Route::get('list','VoteController@vlist');
+        Route::get('show/{id}','VoteController@show');
     });
 });

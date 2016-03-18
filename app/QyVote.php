@@ -20,4 +20,16 @@ class QyVote extends Model
         return $this->hasMany('App\QyVoteRole','vid','id');
     }
 
+    public function getRecords(){
+        return $this->hasMany('App\QyVoteRecord','vid','id')->where('type',0);
+    }
+
+    public function getRecordsSum(){
+        return $this->hasMany('App\QyVoteRecord','vid','id')->where('type',1);
+    }
+
+    public function getStatistics(){
+        
+    }
+
 }

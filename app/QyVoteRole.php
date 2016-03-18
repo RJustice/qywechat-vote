@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class QyVoteRole extends Model
 {
-    //
+    protected $fillable = ['userid','vid','status'];
 }

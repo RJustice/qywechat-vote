@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"int",
+				"integer"
+			],
+			[
+				"vno",
+				"vnodeid"
+			],
+			[
+				"qyV",
+				"QyVoteRecord"
+			],
+			[
+				"QyV",
+				"QyVoteUser"
+			],
+			[
 				"qyvote",
 				"qyvote"
 			],
@@ -91,14 +107,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/Http/Controllers/QyVoteController.php",
-			"settings":
-			{
-				"buffer_size": 2517,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -108,9 +116,17 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "",
+		"last_filter": "install",
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"set balde",
+				"Set Syntax: Laravel Blade"
+			],
 			[
 				"blade",
 				"Snippet: blade-can"
@@ -118,10 +134,6 @@
 			[
 				"set blade",
 				"Set Syntax: Laravel Blade"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
 			],
 			[
 				"install ",
@@ -136,7 +148,7 @@
 				"Set Syntax: PHP"
 			]
 		],
-		"width": 464.0
+		"width": 856.0
 	},
 	"console":
 	{
@@ -163,32 +175,80 @@
 		"/C/phpStudy/WWW/wxmp/app/Http/Controllers",
 		"/C/phpStudy/WWW/wxmp/app/Http/Controllers/Manage",
 		"/C/phpStudy/WWW/wxmp/public",
-		"/C/phpStudy/WWW/wxmp/public/style",
-		"/C/phpStudy/WWW/wxmp/public/style/js",
-		"/C/phpStudy/WWW/wxmp/resources",
-		"/C/phpStudy/WWW/wxmp/resources/assets/sass",
 		"/C/phpStudy/WWW/wxmp/resources/views",
-		"/C/phpStudy/WWW/wxmp/resources/views/layouts",
-		"/C/phpStudy/WWW/wxmp/storage/app",
-		"/C/phpStudy/WWW/wxmp/storage/framework",
-		"/C/phpStudy/WWW/wxmp/storage/framework/cache",
-		"/C/phpStudy/WWW/wxmp/storage/framework/cache/ea",
-		"/C/phpStudy/WWW/wxmp/storage/framework/cache/ea/c5"
+		"/C/phpStudy/WWW/wxmp/resources/views/mvote"
 	],
 	"file_history":
 	[
+		"/C/phpStudy/WWW/wxmp/app/Http/Controllers/QyVoteController.php",
+		"/C/phpStudy/WWW/wxmp/resources/views/vote/list.blade.php",
+		"/C/phpStudy/WWW/wxmp/app/Http/Controllers/Manage/VoteController.php",
+		"/C/phpStudy/WWW/wxmp/app/Http/routes.php",
+		"/C/phpStudy/WWW/wxmp/config/qywechat.php",
+		"/C/Users/jwy/Desktop/qy_users(3).sql",
+		"/C/Users/jwy/Desktop/qy_users(2).sql",
+		"/C/Users/jwy/Desktop/qy_users.sql",
+		"/C/phpStudy/WWW/weiyi/Data/Conf/db.php",
+		"/C/phpStudy/WWW/weiyi/index.php",
+		"/C/phpStudy/WWW/weiyi/Common/runtime.php",
+		"/C/phpStudy/WWW/pigoa/index.php",
+		"/C/phpStudy/WWW/weiyi/qyh2015.sql",
+		"/C/phpStudy/WWW/weiyi/yi.php",
+		"/C/phpStudy/WWW/weiyi/.git/config",
+		"/C/phpStudy/WWW/weiyi/.git/info/exclude",
+		"/C/phpStudy/WWW/wxmp/config/app.php",
+		"/C/phpStudy/WWW/wxmp/vendor/swiftmailer/swiftmailer/lib/classes/Swift/ConfigurableSpool.php",
+		"/C/Users/jwy/AppData/Local/Temp/7zO0F6A915C/weixin.sql",
+		"/C/phpStudy/WWW/pigcms/PigCms/Lib/Model/UserModel.class.php",
+		"/C/phpStudy/WWW/pigoa/Lanrain/Lib/Action/Home/PublicAction.class.php",
+		"/C/phpStudy/WWW/wxmp/app/QyVote.php",
+		"/C/phpStudy/WWW/wxmp/resources/views/vote/view.blade.php",
+		"/C/phpStudy/WWW/wxmp/resources/views/mvote/create.blade.php",
+		"/C/phpStudy/WWW/pigcms/api/weidian.php",
+		"/C/phpStudy/WWW/pigcms/.git/config",
+		"/C/phpStudy/WWW/pigcms/Conf/db.php",
+		"/C/phpStudy/WWW/pigcms/weixin.sql",
+		"/C/phpStudy/WWW/pigcms/微信系统数据库.sql",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/C/phpStudy/WWW/wxmp/resources/views/mvote/c",
+		"/C/phpStudy/WWW/pigoa/sasadown.sql",
+		"/C/phpStudy/WWW/pigoa/Lanrain/Lib/Action/Home/QiyeAction.class.php",
+		"/C/phpStudy/WWW/pigoa/Lanrain/Lib/Action/Home/LoginAction.class.php",
+		"/C/phpStudy/WWW/pigoa/Lanrain/Lib/Action/Qyapp/VoteAction.class.php",
+		"/C/phpStudy/WWW/pigoa/Lib/Core/Db.class.php",
+		"/C/phpStudy/WWW/pigoa/Lanrain/Lib/Action/Qyapp/AddressAction.class.php",
+		"/C/phpStudy/WWW/pigoa/Lanrain/Lib/Action/Home/IndexAction.class.php",
+		"/D/迅雷下载/最新小猪微信企业OA源码（励志当学霸好东西分享）贡献/最新小猪微信企业OA源码/duoqy/qyh2015.sql",
+		"/D/迅雷下载/最新小猪微信企业OA源码（好东西分享）/最新小猪微信企业OA源码/htdocs/index.php",
+		"/C/phpStudy/WWW/pigoa/Data/Conf/db.php",
+		"/C/phpStudy/WWW/pigoa/Lib/Core/Think.class.php",
+		"/C/phpStudy/WWW/pigoa/Lib/Core/ThinkException.class.php",
+		"/C/phpStudy/WWW/th/Application/Common/Conf/config.php",
+		"/C/phpStudy/WWW/th/Application/Home/Conf/config.php",
+		"/C/phpStudy/WWW/th/Application/PigData/Conf/config.php",
+		"/C/phpStudy/WWW/th/index.php",
+		"/C/phpStudy/WWW/th/Application/index.php",
+		"/C/phpStudy/WWW/th/Application/pigoa/index.php",
+		"/C/phpStudy/WWW/th/Application/index.html",
+		"/C/phpStudy/WWW/th/composer.json",
+		"/C/phpStudy/WWW/th/Application/README.md",
+		"/C/phpStudy/WWW/pigoa/PigData/Conf/config.php",
+		"/C/Users/jwy/Desktop/bootstrap-datepicker.js",
+		"/C/phpStudy/WWW/wxmp/.git/config",
+		"/C/phpStudy/WWW/v2/.git/config",
+		"/C/phpStudy/WWW/wxmp/.gitignore",
+		"/C/phpStudy/WWW/wxmp/.gitattributes",
+		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_071813_create_qy_vote_records_table.php",
+		"/C/phpStudy/WWW/wxmp/app/QyVoteNode.php",
+		"/C/phpStudy/WWW/wxmp/resources/views/vote/no_vote.blade.php",
+		"/C/phpStudy/WWW/wxmp/app/QyVoteRecord.php",
+		"/C/phpStudy/WWW/wxmp/vendor/phpunit/phpunit-mock-objects/tests/MockBuilderTest.php",
 		"/C/phpStudy/WWW/wxmp/app/QyVoteUser.php",
 		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_070214_create_qy_vote_users_table.php",
 		"/C/phpStudy/WWW/wxmp/app/QyGroup.php",
 		"/C/phpStudy/WWW/wxmp/app/Http/Controllers/Manage/ContactController.php",
 		"/C/phpStudy/WWW/wxmp/resources/views/vote/create.blade.php",
-		"/C/phpStudy/WWW/wxmp/app/Http/Controllers/QyVoteController.php",
-		"/C/phpStudy/WWW/wxmp/app/Http/routes.php",
-		"/C/phpStudy/WWW/wxmp/app/QyVote.php",
-		"/C/phpStudy/WWW/wxmp/app/QyVoteNode.php",
-		"/C/phpStudy/WWW/wxmp/app/Http/Controllers/Manage/VoteController.php",
 		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_065434_create_qy_vote_nodes_table.php",
-		"/C/Users/jwy/Desktop/bootstrap-datepicker.js",
 		"/C/phpStudy/WWW/v2/app/Http/Controllers/Admin/ArticlesController.php",
 		"/C/phpStudy/WWW/v2/app/Http/Controllers/ArticlesController.php",
 		"/C/phpStudy/WWW/v2/resources/views/widgets/index_p.blade.php",
@@ -201,9 +261,7 @@
 		"/C/phpStudy/WWW/v2/resources/views/pages/show.blade.php",
 		"/C/phpStudy/WWW/wxmp/resources/views/auth/emails/password.blade.php",
 		"/C/phpStudy/WWW/wxmp/config/auth.php",
-		"/C/phpStudy/WWW/wxmp/config/app.php",
 		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_065359_create_qy_votes_table.php",
-		"/C/phpStudy/WWW/wxmp/config/qywechat.php",
 		"/C/phpStudy/WWW/wxbgoa/index.php",
 		"/C/phpStudy/WWW/wxmp/app/Classes/QyWechat.php",
 		"/C/phpStudy/WWW/v2/app/Http/Controllers/Member/MyCustomerController.php",
@@ -220,8 +278,6 @@
 		"/C/phpStudy/WWW/wxmp/.env",
 		"/C/phpStudy/WWW/wxmp/app/QyUser.php",
 		"/C/phpStudy/WWW/wxmp/app/Http/Controllers/HomeController.php",
-		"/C/phpStudy/WWW/wxmp/app/QyVoteRecord.php",
-		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_071813_create_qy_vote_records_table.php",
 		"/C/phpStudy/WWW/wxmp/app/Providers/AuthServiceProvider.php",
 		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_071853_create_qy_vote_roles_table.php",
 		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_070237_create_qy_groups_table.php",
@@ -230,7 +286,6 @@
 		"/C/phpStudy/WWW/wxmp/config/cache.php",
 		"/C/phpStudy/WWW/wxmp/app/Classses/QyWechat.php",
 		"/C/phpStudy/WWW/wxmp/composer.json",
-		"/C/Windows/System32/drivers/etc/hosts",
 		"/C/phpStudy/WWW/wxmp/app/Classses/QyWechat.class.php",
 		"/C/phpStudy/WWW/wxmp/vendor/overtrue/socialite/src/Providers/WeChatProvider.php",
 		"/C/phpStudy/WWW/wxmp/vendor/autoload.php",
@@ -252,17 +307,7 @@
 		"/C/Users/jwy/AppData/Local/Temp/7zEC8257133/yi.php",
 		"/C/phpStudy/WWW/wxbgoa/Extend/Vendor/Ucenter/config.php",
 		"/C/Windows/System32/drivers/etc/lmhosts.sam",
-		"/C/phpStudy/WWW/wxbgoa/qyh.sql",
-		"/C/phpStudy/WWW/wxbgoa/jb51.net.txt",
-		"/C/phpStudy/WWW/wxbgoa/安装说明.txt",
-		"/C/Users/jwy/AppData/Local/Temp/7zECA5AAA16/index.html",
-		"/C/phpStudy/WWW/wxmp/database/migrations/2016_03_07_044524_vote.php",
-		"/C/phpStudy/WWW/wxmp/database/migrations/2014_10_12_000000_create_users_table.php",
-		"/C/Users/jwy/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
-		"/C/Users/jwy/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/C/Users/jwy/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
-		"/C/Users/jwy/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
-		"/C/Users/jwy/AppData/Roaming/Sublime Text 3/Packages/User/JSON.sublime-settings"
+		"/C/phpStudy/WWW/wxbgoa/qyh.sql"
 	],
 	"find":
 	{
@@ -280,6 +325,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"`id`",
+			"id",
+			"extattr",
+			"openid",
+			"department",
+			"`, ",
+			"created_at",
+			"http",
+			"qytoken",
+			"token",
+			"weiyi",
+			"maopan",
+			"oa.maopan",
+			"qy",
+			"curl",
+			"curlGet",
+			"weiyi",
+			"\n                    ",
+			"find",
+			"12",
+			"vuser",
+			"selected",
+			"view",
+			"session",
 			"['",
 			"member",
 			"selectedmem",
@@ -336,98 +405,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/Http/Controllers/QyVoteController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2517,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2331,
-								2331
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content"
-							],
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1263.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -480,6 +459,70 @@
 		"selected_items":
 		[
 			[
+				"configqywe",
+				"config\\qywechat.php"
+			],
+			[
+				"managecontroller",
+				"app\\Http\\Controllers\\Manage\\VoteController.php"
+			],
+			[
+				"qyvoteconto",
+				"app\\Http\\Controllers\\QyVoteController.php"
+			],
+			[
+				"route",
+				"app\\Http\\routes.php"
+			],
+			[
+				"configapp",
+				"config\\app.php"
+			],
+			[
+				"configaoo",
+				"vendor\\swiftmailer\\swiftmailer\\lib\\classes\\Swift\\ConfigurableSpool.php"
+			],
+			[
+				"votelist",
+				"resources\\views\\vote\\list.blade.php"
+			],
+			[
+				"createvoterec",
+				"database\\migrations\\2016_03_07_071813_create_qy_vote_records_table.php"
+			],
+			[
+				"qyvotenode",
+				"app\\QyVoteNode.php"
+			],
+			[
+				"votere",
+				"app\\QyVoteRecord.php"
+			],
+			[
+				"viewvote",
+				"resources\\views\\vote\\view.blade.php"
+			],
+			[
+				"qyvote",
+				"app\\QyVote.php"
+			],
+			[
+				"createblde",
+				"resources\\views\\mvote\\create.blade.php"
+			],
+			[
+				"appqvote",
+				"app\\QyVote.php"
+			],
+			[
+				"votecontroller",
+				"app\\Http\\Controllers\\Manage\\VoteController.php"
+			],
+			[
+				"kb",
+				"vendor\\phpunit\\phpunit-mock-objects\\tests\\MockBuilderTest.php"
+			],
+			[
 				"voteusertable",
 				"database\\migrations\\2016_03_07_070214_create_qy_vote_users_table.php"
 			],
@@ -498,14 +541,6 @@
 			[
 				"createvotenode",
 				"database\\migrations\\2016_03_07_065434_create_qy_vote_nodes_table.php"
-			],
-			[
-				"qyvote",
-				"app\\QyVote.php"
-			],
-			[
-				"route",
-				"app\\Http\\routes.php"
 			],
 			[
 				"qygroup",
@@ -536,16 +571,8 @@
 				"resources\\views\\layouts\\app.blade.php"
 			],
 			[
-				"votecontroller",
-				"app\\Http\\Controllers\\QyVoteController.php"
-			],
-			[
 				"configauth",
 				"config\\auth.php"
-			],
-			[
-				"configapp",
-				"config\\app.php"
 			],
 			[
 				"createqyvotetable",
@@ -566,10 +593,6 @@
 			[
 				"qywechat",
 				"app\\Classes\\QyWechat.php"
-			],
-			[
-				"configqywe",
-				"config\\qywechat.php"
 			],
 			[
 				"configwec",
@@ -602,10 +625,6 @@
 			[
 				"homecontroler",
 				"app\\Http\\Controllers\\HomeController.php"
-			],
-			[
-				"createvoterec",
-				"database\\migrations\\2016_03_07_071813_create_qy_vote_records_table.php"
 			],
 			[
 				"qyvoterec",
@@ -771,7 +790,7 @@
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": false,
+	"side_bar_visible": true,
 	"side_bar_width": 174.0,
 	"status_bar_visible": true,
 	"template_settings":
