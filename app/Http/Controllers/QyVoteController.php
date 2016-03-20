@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Redirect,Input;
+use Redirect,Input,DB;
 use App\QyVote as Vote;
 use \App\Classes\QyWechat;
 use App\QyVoteUser;
@@ -51,6 +51,7 @@ class QyVoteController extends Controller
         if( $userid = $this->_checkQyUser($code) ){
             $user = QyUser::where('userid',$userid)->first();
             $dps = explode(',', trim($user->department,','));
+            $role = QyVoteRole::where('userid',$userid)->first();
             $votes = Vote::where('starttime','<',time())
                 ->where('endtime','>',time())
                 ->where('status',1)
@@ -63,7 +64,7 @@ class QyVoteController extends Controller
                     });
                 })
                 ->get();
-            return view('vote.list',['votes'=>$votes,'userid'=>$userid]);
+            return view('vote.list',['votes'=>$votes,'userid'=>$userid,'role'=>$role]);
         }else{
             return view('vote.need_qy_member');
         }
@@ -193,7 +194,7 @@ class QyVoteController extends Controller
         return true;
     }
 
-    public function wechatStatistics($id = null){
+    public function wechatStatistics($id = null,$order = 'asc'){
         if( session()->has('userid') ){
             $userid = session('userid');
             $role = QyVoteRole::where('userid',$userid)->first();
@@ -211,6 +212,14 @@ class QyVoteController extends Controller
             if( ! $vote ){
                 abort(404);
             }
+            // $order = $request->input('order')?$request->input('order'):'asc';
+            $sum = $vote->getRecordsSum()
+            ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
+            ->groupBy('vuid')
+            ->orderBy('ss1',$order)
+            ->get();
+            var_dump($sum);
+            return view('vote.statistics',['vote'=>$vote,'sum'=>$sum,'order'=>$order]); 
         }       
     }
 

@@ -6,9 +6,9 @@
         <div class="col-md-10 col-md-offset-1">
             <ul class="list-group">
                 @foreach($votes as $vote)
-                <li class="list-group-item">
+                <a href="{{ url('statistics',$vote->id) }}" class="list-group-item">
                     {{ $vote->title }}
-                </li>
+                </a>
                 @endforeach
             </ul>
         </div>

@@ -17,10 +17,10 @@
             @endif
         </div>
     </div>
-    @if($userid == 'yuntao')
+    @if($role)
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <a href="{{ url('vote/') }}" class="btn btn-info btn-block">统计页面</a>
+            <a href="{{ url('statistics') }}" class="btn btn-info btn-block">统计页面</a>
         </div>
     </div>
     @endif

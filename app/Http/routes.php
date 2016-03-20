@@ -29,7 +29,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::post('vote','QyVoteController@postVote');
     Route::get('vlist','QyVoteController@voteList')->name('vlist');
     // Route::get('statistics/{id?}','QyVoteController@WechatStatistics');
-    Route::get('statistics/{id?}','QyVoteController@wechatStatistics');
+    Route::get('statistics/{id?}/{order?}','QyVoteController@wechatStatistics');
 });
 
 Route::group(['middleware'=>'web'],function(){
