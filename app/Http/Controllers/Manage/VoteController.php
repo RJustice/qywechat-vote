@@ -96,7 +96,8 @@ class VoteController extends Controller
     }
 
     public function vlist(){
-        $votes = QyVote::where('starttime','<',time())->where('endtime','>',time())->where('status',1)->get();
+        // $votes = QyVote::where('starttime','<',time())->where('endtime','>',time())->where('status',1)->get();
+        $votes = QyVote::where('status',1)->get();
         return view('mvote.vlist',['votes'=>$votes]);
     }
 
