@@ -57,7 +57,8 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], f
         Route::get('/','VoteController@index');
         Route::get('create','VoteController@create');
         Route::post('store','VoteController@store');
-        Route::get('statistics/{id}/{order}','VoteController@statistics');
+        Route::get('statistics/{id?}/{order?}','VoteController@statistics');
+        Route::get('records/{id?}','VoteController@records');
         Route::get('list','VoteController@vlist');
         Route::get('show/{id}','VoteController@show');
     });

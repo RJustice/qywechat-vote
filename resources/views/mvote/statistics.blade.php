@@ -3,19 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <h3 class="text-center">{{ $vote->title }}</h3>
             <div class="btn-group">
                 <a href="{{ url('manage/vote/statistics',['id'=>$vote->id,'order'=>'asc']) }}" class="btn @if($order == '' || $order == 'asc') btn-success @else btn-default @endif">由低到高</a>
-                <a href="javascript:;" class="btn btn-default">&nbsp;</a>
                 <a href="{{ url('manage/vote/statistics',['id'=>$vote->id,'order'=>'desc']) }}" class="btn @if($order == 'desc') btn-success @else btn-default @endif">由高到低</a>
+                <a href="{{ url('manage/vote/records',['id'=>$vote->id]) }}" class="btn btn-default">投票人统计</a>
             </div>
             <div class="btn-group">
                 <a href="{{ url('manage/vote/list') }}" class="btn btn-default">返回评测列表</a>
             </div>
         </div>
         <br /><br />
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-12">
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="row text-center">

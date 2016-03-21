@@ -95,6 +95,16 @@ class VoteController extends Controller
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum]);
     }
 
+    public function records($id){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+
+        $records = $vote->getRecordsSum()->get();
+        return view('mvote.voterecords',['records'=>$records,'vote'=>$vote]);
+    }
+
     public function vlist(){
         // $votes = QyVote::where('starttime','<',time())->where('endtime','>',time())->where('status',1)->get();
         $votes = QyVote::where('status',1)->get();
