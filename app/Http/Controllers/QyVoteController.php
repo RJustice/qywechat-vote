@@ -219,7 +219,7 @@ class QyVoteController extends Controller
             $sum = $vote->getRecordsSum()
             ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
             ->groupBy('vuid')
-            ->orderBy('ss1',$order)
+            ->orderBy('ss',$order)
             ->get();
             var_dump($sum);
             return view('vote.statistics',['vote'=>$vote,'sum'=>$sum,'order'=>$order]); 
