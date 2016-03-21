@@ -221,7 +221,6 @@ class QyVoteController extends Controller
             ->groupBy('vuid')
             ->orderBy('ss',$order)
             ->get();
-            var_dump($sum);
             return view('vote.statistics',['vote'=>$vote,'sum'=>$sum,'order'=>$order]); 
         }       
     }
