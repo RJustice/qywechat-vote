@@ -14,7 +14,7 @@ class CreateUser extends Seeder
         DB::table('users')->delete();
         $user = \App\User::create([
             'password' => Hash::make('Zw2016!!'),
-            'email' => 'mingyiAdmin',
+            'email' => 'minyiAdmin',
             'name' => '超级管理员',
         ]);
     }
