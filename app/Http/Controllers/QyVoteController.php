@@ -157,7 +157,7 @@ class QyVoteController extends Controller
     }
 
     protected function _checkQyUser($code){
-        if(session()->has('userid')){
+        if(session('userid')){
             return session('userid');
         }else{
             $user = $this->qyWechat->getUserId($code);

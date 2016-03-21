@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="alert alert-danger text-center">
-                <h4>入口错误</h4>
+                <h4>入口错误或者非本企业员工</h4>
                 <p>请联系管理员</p>
             </div>
         </div>
