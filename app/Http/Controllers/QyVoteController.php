@@ -73,8 +73,8 @@ class QyVoteController extends Controller
     public function vote($id,Request $request){
         $code = $request->input('code');
         $vid = $id;
-        // if( $userid = $this->_checkQyUser($code) ){
-            $userid = 'yuntao';
+        if( $userid = $this->_checkQyUser($code) ){
+            // $userid = 'yuntao';
             $user = $this->qyWechat->getUserInfo($userid);
             $vusers = QyVoteUser::where('vid',$vid)
                         ->where(function($query) use($user){
@@ -98,9 +98,9 @@ class QyVoteController extends Controller
                 return view('vote.no_vote_user');
             }
             return view('vote.view',['vusers'=>$vusers,'vote'=>$vote]);
-        // }else{
-            // return view('vote.need_qy_member');
-        // }
+        }else{
+            return view('vote.need_qy_member');
+        }
     }
 
     public function postVote(Request $request){
