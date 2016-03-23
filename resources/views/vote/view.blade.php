@@ -37,7 +37,7 @@
                 <input type="hidden" name="vuserid" value="{{ $vusers[0]['userid'] }}" id="vuser">
                 <input type="hidden" name="vid" value="{{ $vote->id }}">
                 <div class="row">
-                    <div class="input-group col-md-10 col-md-offset-1">
+                    <div class="col-md-10 col-md-offset-1">
                         <input type="submit" value="提交" class="btn btn-block btn-primary" >
                     </div>
                 </div>
