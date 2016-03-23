@@ -36,9 +36,9 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="vuserid" value="{{ $vusers[0]['userid'] }}" id="vuser">
                 <input type="hidden" name="vid" value="{{ $vote->id }}">
-                <div class="row">
+                <div class="row" style="margin-bottom:20px;">
                     <div class="col-md-10 col-md-offset-1">
-                        <input type="submit" value="提交" class="btn btn-block btn-primary" >
+                        <input type="submit" value="提交" class="btn btn-block btn-success btn-lg" >
                     </div>
                 </div>
             </form>
