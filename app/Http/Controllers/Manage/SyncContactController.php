@@ -37,7 +37,7 @@ class SyncContactController extends Controller
             });
         }
 
-        $members = $this->qyWechat->getUserListInfo(1,1,'1,4');
+        $members = $this->qyWechat->getUserListInfo(1,1,'0');
         if( $members ){
             $mdata = [];
             foreach( $members as $member ){
