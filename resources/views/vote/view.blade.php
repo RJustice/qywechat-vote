@@ -24,11 +24,11 @@
                         <hr />
                         @foreach( $vote->getNode()->get() as $k=>$vnode)
                         <h4><span class="num">{{ $k+1 }}:</span>{{ $vnode->title }} </h4>
-                        <p><input type="text" name="vscore[{{ $vnode->id }}]" id="vscore_{{ $vnode->id }}" class="rating"></p>
+                        <p><input type="text" name="vscore[{{ $vnode->id }}]" id="vscore_{{ $vnode->id }}" class="ratingx" required value="1"></p>
                         @endforeach
                     </div>
                     <div class="col-md-12">
-                        <h4>补充:</h4>
+                        <h4>意见建议或投诉举报:</h4>
                         <textarea name="extra" id="extra" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
             }
         });
 
-        $(".rating").rating('refresh',{
+        $(".ratingx").rating({
             min : 0,
             max : 5,
             step : 1,
