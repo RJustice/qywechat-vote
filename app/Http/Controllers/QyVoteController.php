@@ -156,7 +156,7 @@ class QyVoteController extends Controller
 
     public function voteSuccess($id){
         $vid = $id;
-        if( $userid = $this->_checkQyUser($code) ){
+        if( $userid = $this->_checkQyUser() ){
             $user = $this->qyWechat->getUserInfo($userid);
             $vusers = QyVoteUser::where('vid',$vid)
                         ->where(function($query) use($user){
@@ -194,7 +194,7 @@ class QyVoteController extends Controller
         return redirect($this->qyWechat->getOauthRedirect($redirect_uri));
     }
 
-    protected function _checkQyUser($code){
+    protected function _checkQyUser($code=''){
         if(session('userid')){
             return session('userid');
         }else{
