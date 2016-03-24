@@ -30,6 +30,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('vlist','QyVoteController@voteList')->name('vlist');
     // Route::get('statistics/{id?}','QyVoteController@WechatStatistics');
     Route::get('statistics/{id?}/{order?}','QyVoteController@wechatStatistics');
+    Route::get('success/{id}','QyVoteController@voteSuccess');
 });
 
 Route::group(['middleware'=>'web'],function(){

@@ -151,7 +151,42 @@ class QyVoteController extends Controller
                 'type' => 1,
                 'extra' => $extra
             ]);
-        return redirect(url('vlist'));
+        return redirect(url('success',['id'=>$vid]));
+    }
+
+    public function voteSuccess($id){
+        $vid = $id;
+        if( $userid = $this->_checkQyUser($code) ){
+            $user = $this->qyWechat->getUserInfo($userid);
+            $vusers = QyVoteUser::where('vid',$vid)
+                        ->where(function($query) use($user){
+                                foreach($user['department'] as $department){
+                                    $query->orWhere('department','LIKE',"%,".$department.",%");
+                                }
+                            })
+                        ->whereNotIn('userid',function($query) use($user,$vid){
+                                return $query->select('vuid')->from('qy_vote_records')->where('vid',$vid)->where('userid',$user['userid'])->get();
+                            })
+                        ->where('userid','<>',$userid)
+                        ->get();            
+            $xuser = QyUser::where('userid',$userid)->first();
+            $dps = explode(',', trim($xuser->department,','));
+            $votes = Vote::where('starttime','<',time())
+                ->where('endtime','>',time())
+                ->where('status',1)
+                ->where(function($query) use($xuser,$dps){
+                    $query->where('extra','not like','%,'.$xuser->userid.',%');
+                    $query->where(function($query) use($dps){
+                        foreach($dps as $dp){
+                            $query->orWhere('extra','like','%,'.$dp.',%');
+                        }
+                    });
+                })
+                ->get();
+            return view('vote.success',['votes'=>$votes,'vusers'=>$vusers]);
+        }else{
+            return view('vote.need_qy_member');
+        }
     }
     
     public function voteApp(){
