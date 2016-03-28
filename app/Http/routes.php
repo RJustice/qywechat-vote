@@ -59,6 +59,10 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], f
         Route::get('create','VoteController@create');
         Route::post('store','VoteController@store');
         Route::get('statistics/{id?}/{order?}','VoteController@statistics');
+        Route::get('youxiu/{id?}/{order?}','VoteController@youxiu');
+        Route::get('lianghao/{id?}/{order?}','VoteController@lianghao');
+        Route::get('hege/{id?}/{order?}','VoteController@hege');
+        Route::get('buhege/{id?}/{order?}','VoteController@buhege');
         Route::get('records/{id?}','VoteController@records');
         Route::get('list','VoteController@vlist');
         Route::get('show/{id}','VoteController@show');

@@ -92,7 +92,7 @@ class VoteController extends Controller
             ->orderBy('ss',$order)
             ->get();
         
-        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum]);
+        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'statistics']);
     }
 
     public function records($id){
@@ -117,5 +117,77 @@ class VoteController extends Controller
             abort(404);
         }
         return view('mvote.show',['vote'=>$vote]);
+    }
+
+    public function youxiu($id,$order){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+        $order = $order?$order:'asc';
+        // $sum = $vote->getRecordsSum()->orderBy('score',$order)->get();
+        $sum = $vote->getRecordsSum()
+            ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
+            // ->where('ss','>=','90')
+            ->groupBy('vuid')
+            ->havingRaw('ss >= 90')
+            ->orderBy('ss',$order)
+            ->get();
+        
+        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'youxiu']);
+    }
+
+    public function lianghao($id,$order){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+        $order = $order?$order:'asc';
+        // $sum = $vote->getRecordsSum()->orderBy('score',$order)->get();
+        $sum = $vote->getRecordsSum()
+            ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
+            // ->whereBetween('ss',[71,89])
+            ->groupBy('vuid')
+            ->havingRaw('ss >= 71 and ss <= 89')
+            ->orderBy('ss',$order)
+            ->get();
+        
+        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'lianghao']);
+    }
+
+    public function hege($id,$order){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+        $order = $order?$order:'asc';
+        // $sum = $vote->getRecordsSum()->orderBy('score',$order)->get();
+        $sum = $vote->getRecordsSum()
+            ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
+            // ->whereBetween('ss',[60,70])
+            ->groupBy('vuid')
+            ->havingRaw('ss >= 60 and ss <= 70')
+            ->orderBy('ss',$order)
+            ->get();
+        
+        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'hege']);
+    }
+
+    public function buhege($id,$order){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+        $order = $order?$order:'asc';
+        // $sum = $vote->getRecordsSum()->orderBy('score',$order)->get();
+        $sum = $vote->getRecordsSum()
+            ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
+            // ->where('ss','<','60')
+            ->groupBy('vuid')
+            ->havingRaw('ss < 60')
+            ->orderBy('ss',$order)
+            ->get();
+        
+        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'buhege']);
     }
 }
