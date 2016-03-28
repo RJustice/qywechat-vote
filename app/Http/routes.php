@@ -48,6 +48,10 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], f
         Route::get('/rs','SyncContactController@syncRs');
     });
 
+    Route::group(['prefix'=>'role'],function(){
+        Route::resource('role','RoleController');
+    });
+
     Route::group(['prefix'=>'contact'],function(){
         Route::get('glist','ContactController@getGroupList');
         Route::get('uinfo/{id}','ContactController@getMemberInfo');

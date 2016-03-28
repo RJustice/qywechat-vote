@@ -39,7 +39,7 @@
                 </button>--}}
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ route('vlist') }}">
+                <a class="navbar-brand" href="@if (Auth::guest()) {{ route('vlist') }} @else {{ url('') }} @endif">
                     月度评测调研
                 </a>
             </div>

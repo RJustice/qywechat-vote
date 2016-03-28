@@ -4,9 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <div class="btn-group">
+            <div class="btn-group">                
+                <a href="{{ url('manage/vote/create') }}" class="btn btn-info">创建评测</a>
+            </div>
+            <div class="btn-group pull-right">
                 <a href="{{ url('manage/sync') }}" class="btn btn-default" id="sync">同步通讯录</a>
-                <a href="{{ url('manage/vote/create') }}" class="btn btn-default">创建评测</a>
+                <!-- <a href="{{ url('manage/role') }}" class="btn btn-default" id="role">微信统计权限</a> -->
             </div>
         </div>
     </div>

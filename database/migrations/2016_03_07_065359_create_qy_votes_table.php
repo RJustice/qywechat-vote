@@ -22,6 +22,7 @@ class CreateQyVotesTable extends Migration
             $table->integer('endtime');
             $table->integer('ym');
             $table->tinyInteger('status');
+            $table->text('extra');
         });
     }
 

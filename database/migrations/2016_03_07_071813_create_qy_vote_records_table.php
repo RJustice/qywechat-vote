@@ -22,6 +22,8 @@ class CreateQyVoteRecordsTable extends Migration
             $table->date('ym');
             $table->string('vuid');
             $table->string('name');
+            $table->tinyInteger('type');
+            $table->text('extra');
         });
     }
 
