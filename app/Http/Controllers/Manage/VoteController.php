@@ -190,4 +190,5 @@ class VoteController extends Controller
         
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'buhege']);
     }
+
 }

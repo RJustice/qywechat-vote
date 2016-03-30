@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <h2 class="text-center">{{ $vote->title }}</h2>
-            <p>{{{ $vote->info }}}</p>
+            <p>{!! $vote->info !!}</p>
             <form action="{{ url('vote') }}" method="post" id="voteForm">
                 <div class="row">
                     <div class="col-md-12">
