@@ -102,7 +102,7 @@ class VoteController extends Controller
         }
 
         $records = $vote->getRecordsSum()->get();
-        return view('mvote.voterecords',['records'=>$records,'vote'=>$vote,'r'=>'records']);
+        return view('mvote.voterecords',['records'=>$records,'vote'=>$vote,'r'=>'records','order'=>'']);
     }
 
     public function vlist(){
