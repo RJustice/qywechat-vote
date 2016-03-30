@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="margin-bottom:20px;">
             <h3 class="text-center">{{ $vote->title }}</h3>
             <div class="btn-group pull-right">
                 <a href="{{ url('manage/vote/list') }}" class="btn btn-default">返回评测列表</a>
