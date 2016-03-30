@@ -16,9 +16,9 @@ use App\QyVoteRole;
 
 class QyVoteController extends Controller
 {
-    private $appid = "wxaeff15efe968850c";
-    private $secret = "9NEi0eWG8im-L_amE_bdw5CsWrSf9Pw3Af-z77fHg7sv_mcxEN7kOxIC0XCAe8Uq";
-    private $agentid = 46;
+    private $appid = "wxeecbc95a3fece515";
+    private $secret = "RQnx8NLSTcUAjjyZ4j9o9SyVLhsSnDJSImaAAbwbQ0-xyr4JLMJ_mm95uWnlVAzB";
+    private $agentid = 26;
     private $scope = "snsapi_base";
     private $response_type = "code";
     // private $redirect_uri = route('vote');
@@ -36,14 +36,15 @@ class QyVoteController extends Controller
     const ISVOTED = 2;
 
     public function __construct(){
-        $options = [
-            'appid' => $this->appid,
-            'appsecret' => $this->secret,
-            'agentid' => $this->agentid,
-            'debug' => true,
-            // 'redirect_uri' => $this->redirect_uri,
-        ];
-        $this->qyWechat = new QyWechat($options);
+        // $options = [
+        //     'appid' => $this->appid,
+        //     'appsecret' => $this->secret,
+        //     'agentid' => $this->agentid,
+        //     'debug' => true,
+        //     // 'redirect_uri' => $this->redirect_uri,
+        // ];
+        $this->qyWechat = new QyWechat(Config::get('qywechat.vote'));
+        // $this->qyWechat = new QyWechat($options);
     }
 
     public function voteList(Request $request){
