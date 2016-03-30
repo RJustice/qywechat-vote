@@ -3,9 +3,9 @@
 return [
     'vote' => [
         // 'token' => 'token', //登录toklen
-        'appid' => 'wxaeff15efe968850c',
-        'appsecret' => '9NEi0eWG8im-L_amE_bdw5CsWrSf9Pw3Af-z77fHg7sv_mcxEN7kOxIC0XCAe8Uq',
+        'appid' => 'wxeecbc95a3fece515',
+        'appsecret' => 'RQnx8NLSTcUAjjyZ4j9o9SyVLhsSnDJSImaAAbwbQ0-xyr4JLMJ_mm95uWnlVAzB',
         // 'encodingaeskey' => false,
-        'agentid' => 4,
+        'agentid' => 26,
     ],
 ];
