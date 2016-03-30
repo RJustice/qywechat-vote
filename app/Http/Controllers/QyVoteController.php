@@ -43,6 +43,7 @@ class QyVoteController extends Controller
         //     'debug' => true,
         //     // 'redirect_uri' => $this->redirect_uri,
         // ];
+        // 
         $this->qyWechat = new QyWechat(Config::get('qywechat.vote'));
         // $this->qyWechat = new QyWechat($options);
     }
