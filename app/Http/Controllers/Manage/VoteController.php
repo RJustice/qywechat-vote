@@ -10,6 +10,7 @@ use App\QyVote;
 use App\QyVoteNode;
 use App\QyVoteRole;
 use App\QyVoteUser;
+use App\QyVoteRecord;
 use DB;
 
 class VoteController extends Controller
@@ -189,6 +190,18 @@ class VoteController extends Controller
             ->get();
         
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'buhege']);
+    }
+
+    public function more($id,$vuid,$uid){
+        
+        $rs = QyVoteRecord::where('vid',$id)
+            ->where('vuid',$vuid)
+            ->where('userid',$uid)
+            ->where('type',0)
+            ->get();
+
+        return view('mvote.more',['rs'=>$rs]);
+
     }
 
 }

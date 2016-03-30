@@ -16,5 +16,13 @@ class QyVoteRecord extends Model
     public function getWhoVote(){
         return $this->belongsTo('App\QyUser','userid','userid');
     }
+
+    public function node(){
+        return $this->belongsTo('App\QyVoteNode','vnodeid','id');
+    }
+
+    public function vote(){
+        return $this->belongsTo('App\QyVote','vid','id');
+    }
     
 }

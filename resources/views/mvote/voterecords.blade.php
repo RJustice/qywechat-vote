@@ -24,21 +24,23 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="row text-center">
-                        <div class="col-md-3">部门</div>
+                        {{--<div class="col-md-3">部门</div>--}}
                         <div class="col-md-1">被投人</div>
                         <div class="col-md-1">投票人</div>
                         <div class="col-md-1">分数</div>
-                        <div class="col-md-6">补充</div>
+                        <div class="col-md-7">补充</div>
+                        <div class="col-md-2">详细</div>
                     </div>
                 </li>
                 @foreach($records as $s)
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-md-3">@foreach($s->getVUser->getDepartment()->get() as $d ) {{ $d->name }} | @endforeach</div>
+                        {{--<div class="col-md-3">@foreach($s->getVUser->getDepartment()->get() as $d ) {{ $d->name }} | @endforeach</div>--}}
                         <div class="col-md-1 text-center">{{ $s->name }}</div>
                         <div class="col-md-1 text-center">{{ $s->getWhoVote->name }}</div>
                         <div class="col-md-1 text-center">{{ number_format($s->score,2) }}</div>
                         <div class="col-md-6 text-center">{{ $s->extra }}</div>
+                        <div class="col-md-2 text-center"><a href="{{ route('more',['id'=>$s->vid,'vuid'=>$s->vuid,'uid'=>$s->userid]) }}" class="btn btn-info">详细分数</a></div>
                     </div>
                 </li>
                 @endforeach

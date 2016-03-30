@@ -29,7 +29,7 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <div class="row text-center">
-                        <div class="col-md-6">部门</div>
+                        {{--<div class="col-md-6">部门</div>--}}
                         <div class="col-md-2">姓名</div>
                         <div class="col-md-2">评测分数</div>
                         <div class="col-md-2">评测人数</div>
@@ -38,7 +38,7 @@
                 @foreach($sum as $s)
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-md-6">@foreach($s->getVUser->getDepartment()->get() as $d ) {{ $d->name }} | @endforeach</div>
+                        {{--<div class="col-md-6">@foreach($s->getVUser->getDepartment()->get() as $d ) {{ $d->name }} | @endforeach</div>--}}
                         <div class="col-md-2 text-center">{{ $s->name }}</div>
                         <div class="col-md-2 text-center">{{ number_format($s->ss,2) }}</div>
                         <div class="col-md-2 text-center">{{ $s->num }}</div>
