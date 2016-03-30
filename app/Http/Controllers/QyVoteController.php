@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Redirect,Input,DB;
+use Redirect,Input,DB,Config;
 use App\QyVote as Vote;
 use \App\Classes\QyWechat;
 use App\QyVoteUser;
