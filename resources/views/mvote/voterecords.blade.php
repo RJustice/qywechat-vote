@@ -8,10 +8,6 @@
             <div class="btn-group pull-right">
                 <a href="{{ url('manage/vote/list') }}" class="btn btn-default">返回评测列表</a>
             </div>
-            <div class="btn-group pull-right">
-                <a href="{{ url('manage/vote/'.$r,['id'=>$vote->id,'order'=>'asc']) }}" class="btn @if($order == '' || $order == 'asc') btn-success @else btn-default @endif">由低到高</a>
-                <a href="{{ url('manage/vote/'.$r,['id'=>$vote->id,'order'=>'desc']) }}" class="btn @if($order == 'desc') btn-success @else btn-default @endif">由高到低</a>
-            </div>
             <div class="btn-group pull-left" style="margin-right:30px;">
                 <a href="{{ url('manage/vote/records',['id'=>$vote->id]) }}" class="btn btn-default  @if($r == 'records') btn-success @endif">投票人统计</a>
             </div>
