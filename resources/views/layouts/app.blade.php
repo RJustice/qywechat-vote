@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>民意调研</title>
+    <title> @if(isset($vote)) {{ $vote->$title }} @else 民意调研 @endif </title>
 
     <!-- Fonts -->
     <!-- <link href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'> -->
@@ -26,6 +26,7 @@
     </style>
 </head>
 <body id="app-layout">
+    <div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'><img src="{{ asset('style/img/design_and_hand_made_notebook_128px_1199814_easyicon.net.png') }}" width='300'></div>
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
