@@ -26,7 +26,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'><img src="{{ asset('style/img/design_and_hand_made_notebook_128px_1199814_easyicon.net.png') }}" width='300'></div>
+    <div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'><img src="{{ asset('style/img/ic.jpg') }}" width='300'></div>
     <nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
