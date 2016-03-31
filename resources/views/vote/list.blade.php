@@ -6,8 +6,8 @@
         <div class="col-md-10 col-md-offset-1">
             @if( !$votes->isEmpty())
             <div class="list-group">
-                @foreach($votes as $vote)
-                <p><a href="{{ url('vote',$vote->id) }}" class="list-group-item">{{ $vote->title }}</a></p>
+                @foreach($votes as $v)
+                <p><a href="{{ url('vote',$v->id) }}" class="list-group-item">{{ $v->title }}</a></p>
                 @endforeach
             </div>
             @else
