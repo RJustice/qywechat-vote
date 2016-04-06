@@ -70,5 +70,6 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], f
         Route::get('records/{id?}','VoteController@records');
         Route::get('list','VoteController@vlist');
         Route::get('show/{id}','VoteController@show');
+        Route::get('more/{id}-{vuid}-{uid}','VoteController@more')->name('more');
     });
 });

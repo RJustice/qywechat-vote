@@ -17,11 +17,11 @@
         <div class="col-md-10 col-md-offset-1">
             <h3 class="text-center">历次月度评测</h3>
             <ul class="list-group">
-                @foreach($votes as $vote)
+                @foreach($votes as $v)
                 <li class="list-group-item">
                     <p>
-                        <a href="{{ url('manage/vote/show',$vote->id) }}">{{ $vote->title }}</a>
-                        <a href="{{ url('manage/vote/statistics',['id'=>$vote->id,'order'=>'asc']) }}" class="btn btn-primary pull-right">查看统计</a>
+                        <a href="{{ url('manage/vote/show',$v->id) }}">{{ $v->title }}</a>
+                        <a href="{{ url('manage/vote/statistics',['id'=>$v->id,'order'=>'asc']) }}" class="btn btn-primary pull-right">查看统计</a>
                     </p>
                 </li>
                 @endforeach
