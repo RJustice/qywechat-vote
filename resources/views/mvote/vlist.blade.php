@@ -21,7 +21,13 @@
                 <li class="list-group-item">
                     <p>
                         <a href="{{ url('manage/vote/show',$v->id) }}">{{ $v->title }}</a>
-                        <a href="{{ url('manage/vote/statistics',['id'=>$v->id,'order'=>'asc']) }}" class="btn btn-primary pull-right">查看统计</a>
+                        
+                        <span class="btn-group pull-right">
+                            <a href="{{ url('manage/vote/statistics',['id'=>$v->id,'order'=>'asc']) }}" class="btn btn-primary">查看统计</a>
+                            <a href="{{ url('manage/vote/edit',['id'=>$v->id]) }}" class="btn btn-primary">编辑</a>
+                            <a href="{{ url('manage/vote/del',['id'=>$v->id]) }}" class="btn btn-primary">删除</a>
+                            <a href="{{ url('manage/vote/copy',['id'=>$v->id]) }}" class="btn btn-primary">复制</a>
+                        </span>
                     </p>
                 </li>
                 @endforeach

@@ -108,7 +108,7 @@ class VoteController extends Controller
 
     public function vlist(){
         // $votes = QyVote::where('starttime','<',time())->where('endtime','>',time())->where('status',1)->get();
-        $votes = QyVote::where('status',1)->get();
+        $votes = QyVote::where('status',1)->where('is_deleted',0)->get();
         return view('mvote.vlist',['votes'=>$votes]);
     }
 
@@ -201,6 +201,118 @@ class VoteController extends Controller
             ->get();
 
         return view('mvote.more',['rs'=>$rs]);
+
+    }
+
+    public function edit($id){
+        $vote = QyVote::find($id);
+        $selectedMembers = [];
+        foreach( $vote->getVoteUser as $selectedMember ){
+            $selectedMembers[$selectedMember->userid] = [
+                'department' => $selectedMember->department,
+                'name' => $selectedMember->name,
+                'position' => $selectedMember->position,
+            ];
+        }
+        return view('mvote.edit',['vote'=>$vote,'selectedMembers'=>$selectedMembers]);
+    }
+
+    public function update(Request $request, $id){
+        $vote = QyVote::find($id);
+        if( ! $vote ){
+            abort(404);
+        }
+
+        $title = $request->input('title');
+        $info = $request->input('info');
+        $questions = $request->input('q');
+        $percents = $request->input('p');
+        $type = $request->input('type');
+        $forMember = json_decode($request->input('formember'));
+        $starttime = strtotime($request->input('starttime'));
+        $endtime = strtotime($request->input('endtime'));
+
+        DB::transaction(function() use($id,$title,$info,$questions,$percents,$type,$forMember,$starttime,$endtime){
+            // $qyvote = QyVote::create([
+            //         'type' => 1,
+            //         'title' => $title,
+            //         'info' => $info,
+            //         'starttime' => $starttime,
+            //         'endtime' => $endtime,
+            //         'status' => 1,
+            //     ]);
+            // $vid = $qyvote->id;
+
+            $qyvote = QyVote::find($id);
+            $qyvote->title = $title;
+            $qyvote->info = $info;
+            $qyvote->starttime = $starttime;
+            $qyvote->endtime = $endtime;
+            $qyvote->status = 1;        
+
+            // foreach($questions as $i=>$question){
+            //     QyVoteNode::create([
+            //             'title' => $question,
+            //             'vid' => $vid,
+            //             'type' => 1,
+            //             'status' => 1,
+            //             'percent' => $percents[$i]
+            //         ]);
+            // }
+             
+            foreach($qyvote->getNode as $i=>$node){
+                $node->title = $questions[$i];
+                $node->percent = $percents[$i];
+                $node->save();
+            }
+
+            $qyvote->getVoteUser()->delete();
+            $extra = '';
+            foreach($forMember as $userid=>$member){
+                QyVoteUser::create([
+                        'vid' => $id,
+                        'userid' => $userid,
+                        'department' => $member->department,
+                        'name' => $member->name,
+                        'position' => $member->position,
+                    ]);
+                $extra .= ','.$userid.$member->department;
+            }
+
+            $qyvote->extra = $extra;
+            $qyvote->save();
+        });
+
+        return redirect('manage/vote/list');
+    }
+
+    public function del($id){
+        $vote = QyVote::find($id);
+        if( ! $vote ){
+            abort(404);
+        }
+        $vote->is_deleted = 1;
+        $vote->save();
+        return redirect('manage/vote/list');
+    }
+
+    public function copyx($id){
+        $vote = QyVote::find($id);
+        if( ! $vote ){
+            abort(404);
+        }
+        $selectedMembers = [];
+        foreach( $vote->getVoteUser as $selectedMember ){
+            $selectedMembers[$selectedMember->userid] = [
+                'department' => $selectedMember->department,
+                'name' => $selectedMember->name,
+                'position' => $selectedMember->position,
+            ];
+        }
+        return view('mvote.copy',['vote'=>$vote,'selectedMembers'=>$selectedMembers]);
+    }
+
+    public function copyxPOST(Request $request, $id){
 
     }
 

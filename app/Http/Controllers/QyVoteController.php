@@ -57,6 +57,7 @@ class QyVoteController extends Controller
             $votes = Vote::where('starttime','<',time())
                 ->where('endtime','>',time())
                 ->where('status',1)
+                ->where('is_deleted',0)
                 ->where(function($query) use($user,$dps){
                     $query->where('extra','not like','%,'.$user->userid.',%');
                     $query->where(function($query) use($dps){
