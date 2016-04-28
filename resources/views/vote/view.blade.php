@@ -66,7 +66,7 @@
         });
 
         $(".ratingx").rating({
-            min : 0,
+            min : 1,
             max : 5,
             step : 1,
             showClear:false,
