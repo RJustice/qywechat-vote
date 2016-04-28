@@ -129,6 +129,9 @@ class QyVoteController extends Controller
 
         $total = 0;
         foreach($qscore as $vnodeid=>$score){
+            if( $score <= 2 ){
+                $score = 2;
+            }
             $vnode = QyVoteNode::where('id',$vnodeid)->first();
             QyVoteRecord::create([
                     'vid' => $this->_vote->id,
