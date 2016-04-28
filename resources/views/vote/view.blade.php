@@ -24,7 +24,7 @@
                         <hr />
                         @foreach( $vote->getNode()->get() as $k=>$vnode)
                         <h4><span class="num">{{ $k+1 }}:</span>{{ $vnode->title }} </h4>
-                        <p><input type="text" name="vscore[{{ $vnode->id }}]" id="vscore_{{ $vnode->id }}" class="ratingx" required value="1" data-min="1" data-max="5"></p>
+                        <p><input type="text" name="vscore[{{ $vnode->id }}]" id="vscore_{{ $vnode->id }}" class="ratingx" required value="1"></p>
                         @endforeach
                     </div>
                     <div class="col-md-12">
