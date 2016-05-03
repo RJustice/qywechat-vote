@@ -82,7 +82,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="formember" value="">
                 <div class="form-group">
-                    <input type="submit" value="创建" class="btn btn-block btn-primary" id="confirmBtn">
+                    <input type="submit" value="保存" class="btn btn-block btn-primary" id="confirmBtn">
                 </div>
             </form>
         </div>

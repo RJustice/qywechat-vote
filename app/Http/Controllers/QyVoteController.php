@@ -129,8 +129,11 @@ class QyVoteController extends Controller
 
         $total = 0;
         foreach($qscore as $vnodeid=>$score){
-            if( $score <= 2 ){
-                $score = 2;
+            if( $score <= 1 ){
+                $score = 1;
+            }
+            if( $score > 5 ){
+                return redirect(url('voteapp'));
             }
             $vnode = QyVoteNode::where('id',$vnodeid)->first();
             QyVoteRecord::create([
