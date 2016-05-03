@@ -274,11 +274,11 @@ class VoteController extends Controller
                 QyVoteUser::create([
                         'vid' => $id,
                         'userid' => $userid,
-                        'department' => $member->department,
+                        'department' => str_replace(',300,','',$member->department),
                         'name' => $member->name,
                         'position' => $member->position,
                     ]);
-                $extra .= ','.$userid.$member->department;
+                $extra .= ','.$userid.str_replace(',300,','',$member->department);
             }
 
             $qyvote->extra = $extra;
