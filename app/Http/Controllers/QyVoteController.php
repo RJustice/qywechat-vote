@@ -97,6 +97,10 @@ class QyVoteController extends Controller
                 return view('vote.no_vote');
             }
 
+            if( $vote->endtime < time() ){
+                return view('vote.chaoshi');
+            }
+
             if( empty($vusers) ){
                 return view('vote.no_vote_user');
             }
