@@ -65,11 +65,11 @@ class VoteController extends Controller
                 QyVoteUser::create([
                         'vid' => $vid,
                         'userid' => $userid,
-                        'department' => str_replace(',300,','',$member->department),
+                        'department' => str_replace(',300,',',',$member->department),
                         'name' => $member->name,
                         'position' => $member->position,
                     ]);
-                $extra .= ','.$userid.str_replace(',300,', '', $member->department);
+                $extra .= ','.$userid.str_replace(',300,', ',', $member->department);
             }
 
             $qyvote->extra = $extra;
@@ -108,7 +108,7 @@ class VoteController extends Controller
 
     public function vlist(){
         // $s = ",wanghongyuan,234,300,,dingxiaofeng,234,300,,wuhongqing,234,300,,yaohuang,271,300,,huangxiaokang,237,300,,zhangping1,262,300,,lijun,254,300,,guanjun,270,300,,louyihua,273,300,,liling,246,300,,xiaozhou,246,300,,jinhui,253,300,,jinxiaoli,253,300,,donglijun,279,300,,zhangkun,279,300,,meiyacun,256,300,,zhaowenwei,240,300,,jiawenjun,241,300,,jianghao,265,300,,lihua,255,300,,chenjun,247,300,,panjianwei,247,300,,kuangjue,276,300,,malinyun,236,240,241,247,255,256,265,275,276,300,,daixiaohao,242,300,,sunhui,242,300,,jinyue,250,300,,wangxiaoyan,250,300,,jiangcenru,250,300,,chenjing,272,300,,nilina,272,300,,yuxiaofan,272,300,,xuxiaoling,266,300,,jiangzhuo,266,300,,xukejie,266,300,,meiyujing,261,300,,qinsheng,261,300,,lihui,264,300,,zhanghui,264,300,,zhangqing,264,300,,guwenya,252,300,,zhuzhuoxiao,252,300,,liangjia,263,300,,puxiqian,263,300,,liyongli,251,300,,yuanzheng,251,300,,jiangxiaofeng,257,300,,zhoumin,257,300,,weijia,268,300,,liping,268,300,,songhaibo,268,300,,13951217590,267,300,,shenhuwei,258,300,,zhuguangtong,258,300,,wangjun1,259,300,,zhouli,269,,yaolili,278,,qianbing,243,246,253,254,260,262,270,273,279,300,301,,sunzhigang,239,300,,tongjianfang,271,,qianzhong,250,252,261,263,264,266,272,290,294,300,301,,dongxia,249,252,300,";
-        // echo str_replace(',300', '', $s);
+        // echo str_replace(',300,', ',', $s);
         // $votes = QyVote::where('starttime','<',time())->where('endtime','>',time())->where('status',1)->get();
         $votes = QyVote::where('status',1)->where('is_deleted',0)->get();
         return view('mvote.vlist',['votes'=>$votes]);
@@ -274,11 +274,11 @@ class VoteController extends Controller
                 QyVoteUser::create([
                         'vid' => $id,
                         'userid' => $userid,
-                        'department' => str_replace(',300,','',$member->department),
+                        'department' => str_replace(',300,',',',$member->department),
                         'name' => $member->name,
                         'position' => $member->position,
                     ]);
-                $extra .= ','.$userid.str_replace(',300,','',$member->department);
+                $extra .= ','.$userid.str_replace(',300,',',',$member->department);
             }
 
             $qyvote->extra = $extra;
