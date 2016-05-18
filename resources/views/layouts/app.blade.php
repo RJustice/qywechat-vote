@@ -23,6 +23,7 @@
         .fa-btn {
             margin-right: 6px;
         }
+        .m20{margin-top: 20px;}
     </style>
 </head>
 <body id="app-layout">

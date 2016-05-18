@@ -38,7 +38,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('/','HomeController@index');
 });
 
-Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], function () {
+Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage','as'=>'manage::'], function () {
     Route::auth();
     Route::group(['prefix'=>'department'],function(){
         Route::get('/',['as'=>'index','uses'=>'DepartmentController@index']);
@@ -48,9 +48,8 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage'], f
         Route::get('/rs','SyncContactController@syncRs');
     });
 
-    Route::group(['prefix'=>'role'],function(){
-        Route::resource('role','RoleController');
-    });
+    Route::resource('role','RoleController');
+    Route::resource('users','ManageController');
 
     Route::group(['prefix'=>'contact'],function(){
         Route::get('glist','ContactController@getGroupList');

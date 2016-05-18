@@ -99,7 +99,7 @@
 <script type="text/javascript">
     var group,member;
     var tree = {};
-    var selectedMembers = {!! json_encode($selectedMembers) !!};
+    var selectedMembers = {!! empty($selectedMembers)?'{}' : json_encode($selectedMembers) !!};
     $(function(){
 
         function buildGrouTree(){
