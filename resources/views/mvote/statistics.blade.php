@@ -25,6 +25,24 @@
             </div>
         </div>
         <br /><br />
+        <div class="col-md-12 alert alert-info">
+            <div class="row">
+                <div class="col-md-2 text-right">被测评人数</div>
+                <div class="col-md-1">{{ $vduserTotal}}</div>
+                <div class="col-md-2 text-right">总被测评人数</div>
+                <div class="col-md-1">{{ $vuserTotal }}</div>                
+                <div class="col-md-2 text-right">比例</div>
+                <div class="col-md-1">{{ number_format(($vduserTotal / $vuserTotal * 100),2) }}%</div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-right">投票人数</div>
+                <div class="col-md-1">{{ $qvuserTotal}}</div>
+                <div class="col-md-2 text-right">总投票人数</div>
+                <div class="col-md-1">{{ $quserTotal-$vuserTotal }}</div>
+                <div class="col-md-2 text-right">比例</div>
+                <div class="col-md-1">{{ number_format(( $qvuserTotal / ($quserTotal-$vuserTotal) *100),2)}}%</div>
+            </div>
+        </div>
         <div class="col-md-12">
             <ul class="list-group">
                 <li class="list-group-item">

@@ -12,6 +12,7 @@ use App\QyVoteRole;
 use App\QyVoteUser;
 use App\QyVoteRecord;
 use DB;
+use App\QyUser;
 
 class VoteController extends Controller
 {
@@ -92,8 +93,20 @@ class VoteController extends Controller
             ->groupBy('vuid')
             ->orderBy('ss',$order)
             ->get();
-        
-        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'statistics']);
+        $vuserTotal = $vote->getVoteUser()->count();
+        $vduserTotal = $vote->getRecords()->distinct('vuid')->count('vuid');
+        $qvuserTotal = $vote->getRecords()->distinct()->count('userid');
+        $dp = array_unique(explode(',',str_replace(',,', ',', $vote->extra)));
+        // var_dump(array_unique($dp));
+        $quserTotal = QyUser::where(function($query) use($dp){
+            foreach($dp as $d){
+                if( !empty($d) ){
+                    $query->orWhere('department','like','%,'.$d.',%');   
+                }
+            }
+        })->distinct()->count('userid');
+
+        return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'statistics','vuserTotal'=>$vuserTotal,'vduserTotal'=>$vduserTotal,'qvuserTotal'=>$qvuserTotal,'quserTotal'=>$quserTotal]);
     }
 
     public function records($id){
