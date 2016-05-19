@@ -69,7 +69,7 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage','as
         Route::get('records/{id?}','VoteController@records');
         Route::get('list','VoteController@vlist');
         Route::get('show/{id}','VoteController@show');
-        Route::get('more/{id}-{vuid}-{uid}','VoteController@more')->name('more');
+        Route::get('more/{id}/{vuid}/{uid}','VoteController@more')->name('more');
         Route::get('edit/{id}','VoteController@edit')->name('edit');
         Route::get('del/{id}','VoteController@del');
         Route::get('copy/{id}','VoteController@copyx');
