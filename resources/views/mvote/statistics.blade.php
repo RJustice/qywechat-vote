@@ -25,6 +25,7 @@
             </div>
         </div>
         <br /><br />
+        <?php if($r == 'statistics'): ?>
         <div class="col-md-12 alert alert-info">
             <div class="row">
                 <div class="col-md-2 text-right">被测评人数</div>
@@ -43,6 +44,7 @@
                 <div class="col-md-1">{{ number_format(( $qvuserTotal / ($quserTotal-$vuserTotal) *100),2)}}%</div>
             </div>
         </div>
+        <?php endif;?>
         <div class="col-md-12">
             <ul class="list-group">
                 <li class="list-group-item">
