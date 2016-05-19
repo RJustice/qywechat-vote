@@ -46,6 +46,9 @@
                 @endforeach
             </ul>
         </div>
+        <div class="col-md-12">
+            {!! $records->render() !!}
+        </div>
     </div>
 </div>
 @endsection

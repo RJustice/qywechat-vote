@@ -92,7 +92,7 @@ class VoteController extends Controller
             ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
             ->groupBy('vuid')
             ->orderBy('ss',$order)
-            ->get();
+            ->paginate(15);
         $vuserTotal = $vote->getVoteUser()->count();
         $vduserTotal = $vote->getRecords()->distinct('vuid')->count('vuid');
         $qvuserTotal = $vote->getRecords()->distinct()->count('userid');
@@ -115,7 +115,7 @@ class VoteController extends Controller
             abort(404);
         }
 
-        $records = $vote->getRecordsSum()->get();
+        $records = $vote->getRecordsSum()->paginate(15);
         return view('mvote.voterecords',['records'=>$records,'vote'=>$vote,'r'=>'records','order'=>'']);
     }
 
@@ -135,7 +135,7 @@ class VoteController extends Controller
         return view('mvote.show',['vote'=>$vote]);
     }
 
-    public function youxiu($id,$order){
+    public function youxiu($id,$order,Request $request){
         $vote = QyVote::find($id);
         if( !$vote ){
             abort(404);
@@ -146,9 +146,10 @@ class VoteController extends Controller
             ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
             // ->where('ss','>=','90')
             ->groupBy('vuid')
-            ->havingRaw('ss >= 90')
+            ->havingRaw('avg(score) >= 90')
             ->orderBy('ss',$order)
-            ->get();
+            // ->get();
+            ->paginate(15);
         
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'youxiu']);
     }
@@ -164,9 +165,9 @@ class VoteController extends Controller
             ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
             // ->whereBetween('ss',[71,89])
             ->groupBy('vuid')
-            ->havingRaw('ss >= 71 and ss <= 89')
+            ->havingRaw('avg(score) >= 71 and avg(score) <= 89')
             ->orderBy('ss',$order)
-            ->get();
+            ->paginate(15);
         
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'lianghao']);
     }
@@ -182,9 +183,9 @@ class VoteController extends Controller
             ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
             // ->whereBetween('ss',[60,70])
             ->groupBy('vuid')
-            ->havingRaw('ss >= 60 and ss <= 70')
+            ->havingRaw('avg(score) >= 60 and avg(score) <= 70')
             ->orderBy('ss',$order)
-            ->get();
+            ->paginate(15);
         
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'hege']);
     }
@@ -200,9 +201,9 @@ class VoteController extends Controller
             ->select(DB::raw('*,count(*) as num, sum(score) as total, avg(score) as ss'))
             // ->where('ss','<','60')
             ->groupBy('vuid')
-            ->havingRaw('ss < 60')
+            ->havingRaw('avg(score) < 60')
             ->orderBy('ss',$order)
-            ->get();
+            ->paginate(15);
         
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'buhege']);
     }

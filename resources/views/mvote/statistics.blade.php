@@ -67,6 +67,9 @@
                 @endforeach
             </ul>
         </div>
+        <div class="col-md-12">
+            {!! $sum->render() !!}
+        </div>
     </div>
 </div>
 @endsection
