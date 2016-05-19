@@ -40,7 +40,7 @@
                         <div class="col-md-1 text-center">{{ $s->getWhoVote->name }}</div>
                         <div class="col-md-1 text-center">{{ number_format($s->score,2) }}</div>
                         <div class="col-md-6 text-center">{{ $s->extra }}</div>
-                        <div class="col-md-2 text-center"><a href="{{ route('more',['id'=>$s->vid,'vuid'=>$s->vuid,'uid'=>$s->userid]) }}" class="btn btn-info">详细分数</a></div>
+                        <div class="col-md-2 text-center"><a href="{{ url('manage/vote/more',['id'=>$s->vid,'vuid'=>$s->vuid,'uid'=>$s->userid]) }}" class="btn btn-info">详细分数</a></div>
                     </div>
                 </li>
                 @endforeach
