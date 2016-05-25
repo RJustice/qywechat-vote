@@ -79,6 +79,9 @@ class QyVoteController extends Controller
         if( $userid = $this->_checkQyUser($code) ){
             // $userid = 'yuntao';
             $user = $this->qyWechat->getUserInfo($userid);
+            if( QyVoteUser::find(['userid'=>$user['userid']]) ){
+                return view('vote.no_vote_user_sp');
+            }
             $vusers = QyVoteUser::where('vid',$vid)
                         ->where(function($query) use($user){
                                 foreach($user['department'] as $department){
@@ -88,6 +91,9 @@ class QyVoteController extends Controller
                         ->whereNotIn('userid',function($query) use($user,$vid){
                                 return $query->select('vuid')->from('qy_vote_records')->where('vid',$vid)->where('userid',$user['userid'])->get();
                             })
+                        // ->whereNotIn('userid',function($query) use($user,$vid){
+                        //         return $query->select('userid')->from('qy_vote_users')->where('vid',$vid)->get();
+                        //     })
                         ->where('userid','<>',$userid)
                         ->get()
                         ->toArray();
@@ -117,6 +123,9 @@ class QyVoteController extends Controller
         $extra = $request->input('extra');
 
         $userid = session('userid');
+        if( QyVoteUser::find(['userid'=>$userid]) ){
+            return view('vote.no_vote_user_sp');
+        }
         // $userid = 'yuntao';
         $this->_vote = Vote::where('id',$vid)->where('starttime','<',time())->where('endtime','>',time())->first();
         $this->_vuser = QyVoteUser::where('userid',$vuserid)->where('vid',$vid)->first();
@@ -137,7 +146,8 @@ class QyVoteController extends Controller
                 $score = 1;
             }
             if( $score > 5 ){
-                return redirect(url('voteapp'));
+                // return redirect(url('voteapp'));
+                return view('vote.illegal_parameters');
             }
             $vnode = QyVoteNode::where('id',$vnodeid)->first();
             QyVoteRecord::create([

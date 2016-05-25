@@ -13,6 +13,7 @@ use App\QyVoteUser;
 use App\QyVoteRecord;
 use DB;
 use App\QyUser;
+use App\QyGroup;
 
 class VoteController extends Controller
 {
@@ -95,7 +96,7 @@ class VoteController extends Controller
             ->paginate(15);
         $vuserTotal = $vote->getVoteUser()->count();
         $vduserTotal = $vote->getRecords()->distinct('vuid')->count('vuid');
-        $qvuserTotal = $vote->getRecords()->distinct()->count('userid');
+        $qvuserTotal = $vote->getRecords()->distinct('userid')->count('userid');
         $dp = array_unique(explode(',',str_replace(',,', ',', $vote->extra)));
         // var_dump(array_unique($dp));
         $quserTotal = QyUser::where(function($query) use($dp){
@@ -107,6 +108,117 @@ class VoteController extends Controller
         })->distinct()->count('userid');
 
         return view('mvote.statistics',['vote'=>$vote,'order'=>$order,'sum'=>$sum,'r'=>'statistics','vuserTotal'=>$vuserTotal,'vduserTotal'=>$vduserTotal,'qvuserTotal'=>$qvuserTotal,'quserTotal'=>$quserTotal]);
+    }
+
+    public function departStatistics($id){
+        $vote = QyVote::find($id);
+        if( !$vote ){
+            abort(404);
+        }
+
+        $groups = QyGroup::all();
+        $departments = [];
+        // foreach( $groups as $group ){
+        //     $departments[$group['group_id']]['name'] = $group['name'];
+        //     $departments[$group['group_id']]['total'] = QyUser::where('department','like',"%,{$group['group_id']},%")->distinct('userid')->count('userid');
+        //     $departments[$group['group_id']]['vote_sum'] = DB::table('qy_vote_records')->leftJoin('qy_users','qy_vote_records.userid','=','qy_users.userid')->where('qy_users.department','like',"%,{$group['group_id']},%")->where('qy_vote_records.vid','=',$id)->distinct('qy_vote_records.userid')->count('qy_vote_records.userid');
+        //     $departments[$group['group_id']]['pid'] = $group['pid'];
+        // }
+        // $total = [];
+        // $vote_sum = [];
+        // foreach($departments as $gid=>$department){
+        //     if( !isset($total[$department['pid']]) ){
+        //         $total[$department['pid']] = 0;
+        //         $vote_sum[$department['pid']] = 0;
+        //     }
+        //     $total[$department['pid']] += $department['total'];
+        //     $vote_sum[$department['pid']] += $department['vote_sum'];
+        // }
+
+        // return view('mvote.departstatistics',compact('departments','total','vote_sum'));
+
+        $users = QyUser::all();
+        $g = [];
+        foreach($users as $user){
+            $dp = explode(',', str_replace(',,', ',', $user->department));
+            foreach($dp as $d){
+                if( $d != '' ){
+                    $g[$d][] = $user->userid;
+                }
+            }
+        }
+        foreach($g as $d=>$gg){
+            $gg = array_unique($gg);
+            $g[$d] = $gg;
+        }
+
+        $pg = [];
+        foreach($groups as $group){
+            $departments[$group->group_id]['users_sum'] = isset($g[$group->group_id]) ? count($g[$group->group_id]) : 0;
+            $departments[$group->group_id]['name'] = $group->name;
+            $departments[$group->group_id]['pid'] = $group->pid;
+            $pg[$group->pid][] = $group;
+            !isset($g[$group->group_id]) ? ( $g[$group->group_id] = [] ) : $g[$group->group_id];
+
+            $departments[$group->group_id]['vote_sum'] = 0;
+            $departments[$group->group_id]['voted_sum'] = 0;
+            $departments[$group->group_id]['total'] = isset($g[$group->group_id]) ? count($g[$group->group_id]) : 0;
+        }
+
+        $vote_users = $vote->getRecordsSum()->select('userid')->distinct('userid')->get();
+        // $voted_users = $vote->getRecordsSum()->select('vid')->distinct('vid')->get();
+        $voted_users = $vote->getVoteUser()->get();
+
+        foreach($vote_users as $vote_user){
+            foreach($g as $d=>$gg){
+                if( in_array($vote_user->userid, $gg) ){
+                    // $departments[$d]['vote_sum'] = isset($departments[$d]['vote_sum']) ? $departments[$d]['vote_sum'] : 0;
+                    $departments[$d]['vote_sum'] += 1;
+                }
+            }
+        }
+
+        foreach($voted_users as $voted_user){
+            foreach($g as $d=>$gg){
+                if( in_array($voted_user->userid, $gg) ){
+                    // $departments[$d]['voted_sum'] = isset($departments[$d]['voted_sum']) ? $departments[$d]['voted_sum'] : 0;
+                    $departments[$d]['voted_sum'] += 1;
+                }
+            }
+        }
+
+        
+        foreach($groups as $ggg){
+            if( isset($pg[$ggg->group_id]) ){
+                $tmp = [];
+                foreach($pg[$ggg->group_id] as $p){
+                    $tmp = array_merge($tmp,$g[$p->group_id]);
+                    $departments[$ggg->group_id]['voted_sum'] += $departments[$p->group_id]['voted_sum'];
+                    $departments[$ggg->group_id]['vote_sum'] += $departments[$p->group_id]['vote_sum'];
+                }
+                $departments[$ggg->group_id]['total'] = count(array_unique($tmp));                
+            }
+        }
+        $departments[1]['total'] = QyUser::all()->count();
+        $departments[1]['voted_sum'] = $vote->getRecords()->distinct('vuid')->count('vuid');
+        $departments[1]['vote_sum'] = $vote->getRecords()->distinct('userid')->count('userid');
+
+        // foreach($groups as $ggg){
+        //     if( $ggg->pid == 1 ){
+        //         // echo $ggg->group_id;
+        //         // echo "<br />";
+        //         // echo $departments[$ggg->group_id]['total'].'+';
+        //         // echo "<br />";
+        //         $departments[1]['total'] += $departments[$ggg->group_id]['total'];
+        //         $departments[1]['voted_sum'] += $departments[$ggg->group_id]['voted_sum'];
+        //         $departments[1]['vote_sum'] += $departments[$ggg->group_id]['vote_sum'];
+        //     }
+        // }
+        // echo "<pre>";
+        // var_dump($departments);
+        // echo "</pre>";
+
+        return view('mvote.departstatistics',compact('departments','vote'));
     }
 
     public function records($id){

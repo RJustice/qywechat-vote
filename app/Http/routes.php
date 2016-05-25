@@ -74,5 +74,7 @@ Route::group(['middleware' => 'web','prefix'=>'manage','namespace'=>'Manage','as
         Route::get('del/{id}','VoteController@del');
         Route::get('copy/{id}','VoteController@copyx');
         Route::put('update/{id}','VoteController@update');
+
+        Route::get('dps/{id}','VoteController@departStatistics');
     });
 });
