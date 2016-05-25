@@ -159,6 +159,8 @@ class VoteController extends Controller
             $departments[$group->group_id]['pid'] = $group->pid;
             $pg[$group->pid][] = $group;
             !isset($g[$group->group_id]) ? ( $g[$group->group_id] = [] ) : $g[$group->group_id];
+            $departments[$group->group_id]['vu'] = [];
+            $departments[$group->group_id]['vdu'] = [];
 
             $departments[$group->group_id]['vote_sum'] = 0;
             $departments[$group->group_id]['voted_sum'] = 0;
@@ -174,6 +176,7 @@ class VoteController extends Controller
                 if( in_array($vote_user->userid, $gg) ){
                     // $departments[$d]['vote_sum'] = isset($departments[$d]['vote_sum']) ? $departments[$d]['vote_sum'] : 0;
                     $departments[$d]['vote_sum'] += 1;
+                    $departments[$d]['vu'][] = $vote_user->userid;
                 }
             }
         }
@@ -183,19 +186,23 @@ class VoteController extends Controller
                 if( in_array($voted_user->userid, $gg) ){
                     // $departments[$d]['voted_sum'] = isset($departments[$d]['voted_sum']) ? $departments[$d]['voted_sum'] : 0;
                     $departments[$d]['voted_sum'] += 1;
+                    $departments[$d]['vdu'][] = $voted_user->userid;
                 }
             }
         }
 
-        
         foreach($groups as $ggg){
             if( isset($pg[$ggg->group_id]) ){
                 $tmp = [];
+                $tmp1 = [];
+                $tmp2 = [];
                 foreach($pg[$ggg->group_id] as $p){
                     $tmp = array_merge($tmp,$g[$p->group_id]);
-                    $departments[$ggg->group_id]['voted_sum'] += $departments[$p->group_id]['voted_sum'];
-                    $departments[$ggg->group_id]['vote_sum'] += $departments[$p->group_id]['vote_sum'];
+                    $tmp1 = array_merge($tmp1,$departments[$p->group_id]['vu']);
+                    $tmp2 = array_merge($tmp2,$departments[$p->group_id]['vdu']);
                 }
+                $departments[$ggg->group_id]['voted_sum'] = count(array_unique($tmp2));;
+                $departments[$ggg->group_id]['vote_sum'] = count(array_unique($tmp1));;
                 $departments[$ggg->group_id]['total'] = count(array_unique($tmp));                
             }
         }
