@@ -2,7 +2,16 @@
 
 @section('content')
 <div class="container">
-    <h3 class="text-center">{{ $vote->title }}</h3>
+    <div class="row">
+    <div class="col-md-10 col-md-offset-1" style="margin-bottom:20px;">
+        <h3 class="text-center">{{ $vote->title }}</h3>
+
+        <div class="btn-group pull-left">
+            <a href="{{ url('manage/vote/list') }}" class="btn btn-default">返回评测列表</a>
+        </div>
+    </div>
+    </div>
+
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <ul class="list-group">

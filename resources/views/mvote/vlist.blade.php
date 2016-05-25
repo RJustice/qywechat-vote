@@ -38,6 +38,7 @@
                         <a href="{{ url('manage/vote/show',$v->id) }}">{{ $v->title }}</a>
                         
                         <span class="btn-group pull-right">
+                            <a href="{{ url('manage/vote/dps',['id'=>$v->id]) }}" class="btn btn-primary">部门参与率</a>
                             <a href="{{ url('manage/vote/statistics',['id'=>$v->id,'order'=>'asc']) }}" class="btn btn-primary">查看统计</a>
                             <?php if( Auth::user()->id === 1 ): ?>
                             <a href="{{ url('manage/vote/edit',['id'=>$v->id]) }}" class="btn btn-primary">编辑</a>
