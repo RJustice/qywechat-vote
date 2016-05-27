@@ -79,7 +79,7 @@ class QyVoteController extends Controller
         if( $userid = $this->_checkQyUser($code) ){
             // $userid = 'yuntao';
             $user = $this->qyWechat->getUserInfo($userid);
-            if( QyVoteUser::find(['userid'=>$user['userid']]) ){
+            if( ! QyVoteUser::find(['userid'=>$user['userid']])->isEmpty() ){
                 return view('vote.no_vote_user_sp');
             }
             $vusers = QyVoteUser::where('vid',$vid)
@@ -123,7 +123,7 @@ class QyVoteController extends Controller
         $extra = $request->input('extra');
 
         $userid = session('userid');
-        if( QyVoteUser::find(['userid'=>$userid]) ){
+        if( ! QyVoteUser::find(['userid'=>$user['userid']])->isEmpty() ){
             return view('vote.no_vote_user_sp');
         }
         // $userid = 'yuntao';
