@@ -123,7 +123,7 @@ class QyVoteController extends Controller
         $extra = $request->input('extra');
 
         $userid = session('userid');
-        if( ! QyVoteUser::find(['userid'=>$user['userid']])->isEmpty() ){
+        if( ! QyVoteUser::find(['userid'=>$userid])->isEmpty() ){
             return view('vote.no_vote_user_sp');
         }
         // $userid = 'yuntao';
