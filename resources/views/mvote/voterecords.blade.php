@@ -10,6 +10,7 @@
             </div>
             <div class="btn-group pull-left" style="margin-right:30px;">
                 <a href="{{ url('manage/vote/records',['id'=>$vote->id]) }}" class="btn btn-default  @if($r == 'records') btn-success @endif">投票人统计</a>
+                <a href="{{ url('manage/vote/records',['id'=>$vote->id,'extra'=>'has']) }}" class="btn btn-default  @if($r == 'records') btn-info @endif">有补充</a>
             </div>
             <div class="btn-group pull-left">            
                 <a href="{{ url('manage/vote/statistics',['id'=>$vote->id,'order'=>'desc']) }}" class="btn btn-default @if($r == 'statistics') btn-success @endif">全部排名</a>

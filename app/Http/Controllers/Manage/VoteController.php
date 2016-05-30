@@ -228,13 +228,17 @@ class VoteController extends Controller
         return view('mvote.departstatistics',compact('departments','vote'));
     }
 
-    public function records($id){
+    public function records($id,$extra = false){
         $vote = QyVote::find($id);
         if( !$vote ){
             abort(404);
         }
 
-        $records = $vote->getRecordsSum()->paginate(15);
+        if( $extra ){
+            $records = $vote->getRecordsSum()->where('extra','<>','')->paginate(15);
+        }else{            
+            $records = $vote->getRecordsSum()->paginate(15);
+        }
         return view('mvote.voterecords',['records'=>$records,'vote'=>$vote,'r'=>'records','order'=>'']);
     }
 
