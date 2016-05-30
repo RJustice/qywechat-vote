@@ -235,7 +235,7 @@ class VoteController extends Controller
         }
 
         if( $extra ){
-            $records = $vote->getRecordsSum()->where('extra','<>','')->paginate(15);
+            $records = $vote->getRecordsSum()->where('extra','<>','')->orderBy('vuid')->paginate(15);
         }else{            
             $records = $vote->getRecordsSum()->paginate(15);
         }
