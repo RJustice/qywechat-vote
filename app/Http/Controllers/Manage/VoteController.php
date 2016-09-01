@@ -37,10 +37,10 @@ class VoteController extends Controller
         $questions = $request->input('q');
         $percents = $request->input('p');
         $type = $request->input('type');
+        date_default_timezone_set('Asia/Shanghai');
         $forMember = json_decode($request->input('formember'));
         $starttime = strtotime($request->input('starttime'));
-        $endtime = strtotime($request->input('endtime').'+ 1day');
-
+        $endtime = strtotime($request->input('endtime').' 23:59:59');
         DB::transaction(function() use($title,$info,$questions,$percents,$type,$forMember,$starttime,$endtime){
             $qyvote = QyVote::create([
                     'type' => 1,
@@ -367,10 +367,11 @@ class VoteController extends Controller
         $questions = $request->input('q');
         $percents = $request->input('p');
         $type = $request->input('type');
+
+        date_default_timezone_set('Asia/Shanghai');
         $forMember = json_decode($request->input('formember'));
         $starttime = strtotime($request->input('starttime'));
-        $endtime = strtotime($request->input('endtime'));
-
+        $endtime = strtotime($request->input('endtime'.' 23:59:59'));
         DB::transaction(function() use($id,$title,$info,$questions,$percents,$type,$forMember,$starttime,$endtime){
             // $qyvote = QyVote::create([
             //         'type' => 1,
