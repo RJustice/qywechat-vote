@@ -39,7 +39,7 @@ class VoteController extends Controller
         $type = $request->input('type');
         $forMember = json_decode($request->input('formember'));
         $starttime = strtotime($request->input('starttime'));
-        $endtime = strtotime($request->input('endtime'));
+        $endtime = strtotime($request->input('endtime').'+ 1day');
 
         DB::transaction(function() use($title,$info,$questions,$percents,$type,$forMember,$starttime,$endtime){
             $qyvote = QyVote::create([
